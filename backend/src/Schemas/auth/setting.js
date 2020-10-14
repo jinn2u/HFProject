@@ -5,6 +5,16 @@ const { saltRounds } = require('../../../config')
 
 module.exports = async (req, res) => {
   const {user_num, user_secret_key, user_type} = req.body
+  console.log(user_secret_key)
   const hash = await bcrypt.hash(user_secret_key, saltRounds)
-  console.log(hash)
+  try{
+    await pool.query(`
+      INSERT INTO user(user_num, user_secret_key, user_type) 
+      VALUES("${user_num}","${hash}","${user_type}")  
+      `)
+      return res.status(200).json({ "setting": true})
+  } catch (error) {
+    console.error(error)
+    return res.status(400).json({ "setting": false})
+  }
 }
