@@ -5,6 +5,7 @@ const { saltRounds } = require('../../../config')
 
 module.exports = async (req, res) => {
   const {user_num, user_name, user_pw, user_secret_key: pushed_secret_key} = req.body
+  console.log(user_name)
   try{
     const {user_secret_key} = (await pool.query(`
       SELECT user_secret_key
@@ -19,9 +20,6 @@ module.exports = async (req, res) => {
       return res.status(400).json({"login": false, "error":"존재하지 않는 학번(사번)입니다."})
     else {
       const hash = await bcrypt.hash(user_pw, saltRounds)
-//       UPDATE 테이블이름
-// SET 필드이름1=데이터값1, 필드이름2=데이터값2, ...
-// WHERE 필드이름=데이터값
       try{
         await pool.query(`
           UPDATE user

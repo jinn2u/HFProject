@@ -2,7 +2,7 @@ const express = require('express')
 
 const setting = require('../Schemas/auth/setting')
 const signup = require('../schemas/auth/signup')
-// const login = require('../schemas/auth/login')
+const signin = require('../schemas/auth/signin')
 // const logout = require('../schemas/auth/logout')
 
 const router = express.Router()
@@ -12,7 +12,7 @@ router.post('/setting',setting) //학번(사번)과 주민등록번호를 암호
 
 //사용자 전용(프론트에서 보여야됨)
 router.post('/signup',signup) //회원가입
-// router.post('/login',login) //로그인
+router.post('/signin',signin) //로그인
 // router.post('/logout', logout)
 
 module.exports = router

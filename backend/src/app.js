@@ -4,6 +4,7 @@ const bodyParser = require('body-parser')
 
 const { PORT } = require('../config')
 const authSchema = require('./Routes/auth')
+const classmanagement = require('./Routes/classmanagement')
 
 const app = express()
 app.use(morgan('dev'))
@@ -19,6 +20,7 @@ const options = { etag: false };
 app.use(express.static("public", options));
 
 app.use('/', authSchema)
+app.use('/classmanagement', classmanagement)
 
 app.listen((port = PORT), () =>console.log(`server is runngin on http://localhost:${PORT}`))
 
