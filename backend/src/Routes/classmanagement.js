@@ -1,10 +1,10 @@
 const express = require('express')
 
-const registerclass = require('../Schemas/classmanagement/registerclass')
-
+const showClass = require('../Schemas/classmanagement/showClass')
+const showStudents = require('../Schemas/classmanagement/showStudents')
 
 const router = express.Router()
 
-router.get('/registerclass',registerclass) //회원가입
-
+router.get('/showClass', showClass) //본인이 맡은 학급을 보여준다.
+router.get('/showStudents', showStudents)
 module.exports = router

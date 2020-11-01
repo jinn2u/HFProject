@@ -13,7 +13,7 @@ module.exports = async (req, res) => {
     if (!exist_pw)
       return res.status(400).json({ "login": false, "error": "잘못된 비밀번호 입니다." })
     //토큰 생성
-    const access_token = jwt.sign({ data: user_num }, secret, { expiresIn: '1h' })
+    const access_token = jwt.sign({ data: user_num }, secret, { expiresIn: '24h' })
     const RefreshToken = randtoken.generate(16)
     // //refresh token update
     await pool.query(`UPDATE user SET user_refresh_token = "${RefreshToken}" where user_num="${user_num}"`)

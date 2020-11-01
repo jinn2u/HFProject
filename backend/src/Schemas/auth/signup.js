@@ -5,7 +5,7 @@ const { saltRounds } = require('../../../config')
 
 module.exports = async (req, res) => {
   const {user_num, user_name, user_pw, user_secret_key: pushed_secret_key} = req.body
-  console.log(user_name)
+  console.log(user_num)
   try{
     const {user_secret_key} = (await pool.query(`
       SELECT user_secret_key
@@ -26,14 +26,14 @@ module.exports = async (req, res) => {
           SET user_name="${user_name}", user_pw="${hash}", user_secret_key=""
           WHERE user_num="${user_num}"
         `)
-        res.status(200).json({"login":"true"})
+        res.status(200).json({"signup":"true"})
       } catch(error) {
         console.error(error)
-        return res.status(400).json({"login": false, "error":"다시 시도하세요."})
+        return res.status(400).json({"signup": false, "error":"다시 시도하세요."})
       }
     }
   } catch (error) {
     console.error(error)
-    return res.status(400).json({"setting": false})
+    return res.status(400).json({"signup": false})
   }
 }
