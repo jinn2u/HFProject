@@ -1,14 +1,14 @@
 import React from 'react'
 
 
-const ClassmanagementPresenter = ({tea_class, tea_home, onBtnClick}) => (
+const ClassmanagementPresenter = ({tea_class, tea_home, students, onBtnClick}) => (
   <>
     <h1>학급관리페이지 입니다.</h1>
     <h3>--------------------------담당 학급 목록----------------------------------------------</h3>
-    {tea_home ===(null || undefined) && (
+    {tea_home ===null && (
       <h1>담임학급이 없습니다</h1>
     )}
-    {tea_home !== (null) && (
+    {tea_home !== null && (
       <h1>담임학급: {tea_home}</h1>
     )}
     담당 학급 {tea_class.map((tea_clas, i) => 
@@ -18,6 +18,14 @@ const ClassmanagementPresenter = ({tea_class, tea_home, onBtnClick}) => (
         </button>
         <br/>
     </h3>
+    )}
+    {students !== false && (
+    <>
+    {/* {students.map((student, i)=> <li key={i}>
+      {student}
+    </li>)} */}
+    <h1>sibal</h1>
+    </>  
     )}
   </> 
 )

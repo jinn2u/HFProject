@@ -3,8 +3,6 @@ const moment = require('moment-timezone');
 
 module.exports = async (req, res) => {
   const {tea_class} = req.body
-  const a = req.body
-  console.log(a)
   moment.tz.setDefault("Asia/Seoul");
   var date = moment().format('YYYY');
   try{

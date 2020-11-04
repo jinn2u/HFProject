@@ -1,16 +1,16 @@
 import { handleActions} from 'redux-actions'
-import * as api from '../../Utils/api'
-import oneParamThunk from '../thunk/oneParamThunk'
+import * as api from './api'
+import oneParameterThunk from './Thunk_oneParameter'
 
 const GET_CLASS = 'GET_CLASS'
 const GET_CLASS_SUCCESS = 'showStudents/CLASS_SUCCESS'
 const GET_CLASS_FAILURE = 'showStudents/CLASS_FAILURE'
 
-export const getStudents = oneParamThunk(GET_CLASS, api.showStudents)
+export const getStudents = oneParameterThunk(GET_CLASS, api.showStudents)
 
 const initialState = {
   showStudent: false,
-  students: false,
+  students: [],
   error: false,
 }
 const showStudents = handleActions(

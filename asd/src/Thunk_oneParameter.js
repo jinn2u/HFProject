@@ -1,6 +1,6 @@
-import { startLoading, finishLoading } from '../loading'
+import { startLoading, finishLoading } from './Thunk_loading'
 
-export default function loginThunk(type, request) {
+export default function oneParameterThunk(type, request) {
   const SUCCESS = `${type}_SUCCESS`
   const FAILURE = `${type}_FAILURE`
   return (oneParam) => async (dispatch) => {
