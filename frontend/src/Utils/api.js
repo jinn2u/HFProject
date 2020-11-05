@@ -36,7 +36,7 @@ instance.interceptors.response.use(
 export const getLogin = (user_num, user_pw) => instance.post('/signin', {user_num, user_pw})
 export const getLogout = () => axios.post('/logout')
 export const showClass = () => instance.post('/classmanagement/showClass')
-export const showStudents = (tea_class) => instance.post('/classmanagement/showStudents',{tea_class})
+export const showStudents = (tea_class) => instance.post('/classmanagement/showstudents',{tea_class})
 // export const getSignup = ( user_num, user_name, user_id, user_pwd ) =>
 //   axios.post('/signup', { user_num, user_name, user_id, user_pwd })
 

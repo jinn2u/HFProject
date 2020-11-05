@@ -1,14 +1,14 @@
 import { startLoading, finishLoading } from '../loading'
 
-export default function loginThunk(type, request) {
+export default function noParameter(type, request) {
   const SUCCESS = `${type}_SUCCESS`
   const FAILURE = `${type}_FAILURE`
-  return (oneParam) => async (dispatch) => {
+  return () => async (dispatch) => {
     // api.getUser
     dispatch({ type })
     dispatch(startLoading(type))
     try {
-      const response = await request(oneParam)
+      const response = await request()
       dispatch({
         type: SUCCESS,
         payload: response.data,

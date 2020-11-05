@@ -1,14 +1,10 @@
-import React, { useCallback } from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import React from 'react'
+import {useSelector} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {getClass} from '../Modules/classManagement/showClass'
+
 
 export default () => {  
   const {user_type} = useSelector(state => state.login)
-  const dispatch = useDispatch()
-  // const onLinkClick = useCallback(e=> {
-  //   dispatch(getClass())
-  // },[dispatch])
   return (
     <>        
       {user_type==='student' && (

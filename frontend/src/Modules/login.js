@@ -2,7 +2,7 @@ import { handleActions, createAction} from 'redux-actions'
 import Cookies from 'js-cookie'
 import * as api from '../Utils/api'
 import loginThunk from './thunk/loginThunk'
-import noParameterThunk from './thunk/noParameterThunk'
+import noParameter from './thunk/noParameter'
 
 const GET_LOGIN = 'login/LOGIN'
 const GET_LOGIN_SUCCESS = 'login/LOGIN_SUCCESS'
@@ -13,7 +13,7 @@ const GET_LOGOUT = 'login/LOGOUT'
 export const maintain_login = createAction(MAINTAIN_LGOIN)
 
 export const getLogin = loginThunk(GET_LOGIN, api.getLogin)
-export const getLogout = noParameterThunk(GET_LOGOUT, api.getLogout)
+export const getLogout = noParameter(GET_LOGOUT, api.getLogout)
 
 const initialState = {
   isLoggedIn: false,
