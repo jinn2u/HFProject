@@ -18,9 +18,9 @@ module.exports = async (req, res) => {
     // //refresh token update
     await pool.query(`UPDATE user SET user_refresh_token = "${RefreshToken}" where user_num="${user_num}"`)
     const refresh_token = jwt.sign({ data: RefreshToken }, secret, { expiresIn: '1d' })
-    return res.status(200).send({ "login": true, "refresh_token": refresh_token, "access_token": access_token, user_name, user_type }) 
+    return res.status(200).send({ "login": true, "refresh_token": refresh_token, "access_token": access_token, user_name, user_type, error: false}) 
   } catch (error) {
     console.error(error)
-    return res.status(400).json({ login: false, error: "존재하지 않는 사번/학번 입니다." })
+    return res.status(400).json({ "login": false, error: "존재하지 않는 사번/학번 입니다." })
   }  
 }

@@ -22,9 +22,9 @@ module.exports = async (req, res) => {
           VALUES("${user_num}")
         `)
       }
-      return res.status(200).json({ "setting": true})
+    return res.status(200).json({"setting": true, error: false})
   } catch (error) {
     console.error(error)
-    return res.status(400).json({ "setting": false})
+    return res.status(400).json({error:"다시 셋팅하세요."})
   }
 }
