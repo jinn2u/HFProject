@@ -2,7 +2,7 @@ import { handleActions} from 'redux-actions'
 import * as api from '../../Utils/api'
 import oneParam from '../thunk/oneParam'
 
-const GET_TEA_STUDENTS = 'class/TEA'
+const GET_TEA_STUDENTS = 'class/TEA_STUDENTS'
 const GET_TEA_STUDENTS_SUCCESS = 'class/TEA_STUDENTS_SUCCESS'
 const GET_TEA_STUDENTS_FAILURE = 'class/TEA_STUDENTS_FAILURE'
 export const getStudent = oneParam(GET_TEA_STUDENTS, api.showStudents)

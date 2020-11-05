@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/" component={Main} exact />
         <Route path="/login" component={Login} />
         <Route path="/classmanagement" component={Classmanagement} exact/>
-        <Route path="/classmanagement/showStudents" component={ShowStudent} />
+        <Route path="/classmanagement/showStudents" component={ShowStudent} exact/>
       </Switch>
     </>
   );

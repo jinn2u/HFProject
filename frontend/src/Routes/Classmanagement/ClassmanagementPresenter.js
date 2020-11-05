@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const ClassmanagementPresenter = ({loading, tea_class, tea_home}) => ( 
+const ClassmanagementPresenter = ({loading, tea_class, tea_home, students, showStudent, selectedClass, onBtnClick}) => ( 
   <>
     {loading === true ? (
       <h2>로딩중입니다.</h2>
@@ -23,9 +23,22 @@ const ClassmanagementPresenter = ({loading, tea_class, tea_home}) => (
             <>
               담당 학급:
               {tea_class.map((tea_clas, i)=> 
-                
-                  <Link key={i} to={{pathname:"/classmanagement/showStudents", state: tea_clas}}>{tea_clas}</Link>)}
+                <button key={i} onClick={onBtnClick} value={tea_clas}>{tea_clas}</button>
+                  // <Link key={i} to={{pathname:"/classmanagement/showStudents", state: tea_clas}}>{tea_clas}</Link>
+                  )}
             </>
+        )}
+        {showStudent === false ? (
+          <></>
+        ):(
+          <table border="1">
+            <tr><td>학번</td><td>이름</td></tr>
+            {students.map((student, i) => 
+              <tr key={i}>
+                <td><button value={student.class_stu_num}>{student.class_stu_num}</button></td><td><button value={student.class_stu_name}>{student.class_stu_name}</button></td>
+              </tr>
+            )}
+          </table>
         )}
       </>
     )}
