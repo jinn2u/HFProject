@@ -37,6 +37,8 @@ export const getLogin = (user_num, user_pw) => instance.post('/signin', {user_nu
 export const getLogout = () => axios.post('/logout')
 export const showClass = () => instance.post('/classmanagement/showClass')
 export const showStudents = (tea_class) => instance.post('/classmanagement/showStudents',{tea_class})
+export const showSubjects = () => instance.post('/classmanagement/showsubject')
+export const registerStandard = (tea_subject, sub_semester, mid, final, practice) => instance.post('/classmanagement/registerstandard',{tea_subject, sub_semester, mid, final, practice})
 // export const getSignup = ( user_num, user_name, user_id, user_pwd ) =>
 //   axios.post('/signup', { user_num, user_name, user_id, user_pwd })
 
