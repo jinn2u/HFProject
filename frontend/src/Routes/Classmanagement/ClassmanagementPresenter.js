@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const ClassmanagementPresenter = ({loading, 
   tea_class, 
   tea_home, 
@@ -22,7 +21,14 @@ const ClassmanagementPresenter = ({loading,
   std_mid,
   std_final,
   std_practice,
-  onInpGradeBtn
+  onInpGradeBtn,
+  onInpGradeBtnValue,
+  onGradeSubmit,
+  chooseSemester,
+  chooseSemBtn,
+  chooseSemVal,
+  registerGrade,
+  grades
 }) => ( 
   <>
     {loading === true ? (
@@ -45,7 +51,7 @@ const ClassmanagementPresenter = ({loading,
               담당 학급:
               {tea_class.map((tea_clas, i)=> 
                 <button key={i} onClick={onBtnClick} value={tea_clas}>{tea_clas}</button>
-                  )}
+              )}
             </>
         )}
         {showStudent === false ? (
@@ -54,7 +60,9 @@ const ClassmanagementPresenter = ({loading,
           <>
             <h1>{selectedClass} 에 대한 학생들의 성적 입력하기</h1>
             <h1>과목을 선택하세요: {chooseSubject}</h1>
+            <h1>학기를 선택하세요: {chooseSemVal}</h1>
             {subjects.map((subject, i)=> <button key ={i} onClick={chooseSubBtn}value={subject}>{subject}</button>)}
+            {chooseSemester.map((semester, i)=> <button key ={i} onClick={chooseSemBtn}value={semester}>{semester}학기</button>)}
             <table border="1">
               <thead>
               <tr><td>이름</td><td>학번</td><td></td></tr>
@@ -64,11 +72,37 @@ const ClassmanagementPresenter = ({loading,
                   <tr key={i}>
                     <td><input value={student.class_stu_name} placeholder={student.class_stu_name} readOnly /></td>
                     <td><input placeholder={student.class_stu_num} value={student.class_stu_num} readOnly/></td>
-                    <td><button onClick={onInpGradeBtn}>선택하세요.</button></td>
+                    <td><button onClick={onInpGradeBtn} value={student.class_stu_num}>선택하세요.</button></td>
                   </tr>
                 )}
               </tbody>
             </table>
+            {onInpGradeBtnValue === false ? (
+              <></>
+            ):(
+              <form onSubmit={onGradeSubmit}>
+                <input placeholder='중간고사' value={std_mid.value} onChange={std_mid.onChange} />
+                <input placeholder='기말고사' value={std_final.value} onChange={std_final.onChange} />
+                <input placeholder='수행평가' value={std_practice.value} onChange={std_practice.onChange} />
+                <button>등록하기</button>
+              </form>
+            )}
+            {registerGrade === false ? (
+              <></>
+            ):(
+              <>
+                <h1>--------------------------학생들의 성적-------------------------</h1>
+                <table border="1">
+                <thead><td>학번</td><td>중간점수</td><td>기말점수</td><td>수행점수</td><td>학기</td><td>평균</td></thead>
+                <tbody>
+                {grades.map((grade, i)=> 
+                  <tr key={i}>
+                    <td>{grade.stu_num}</td><td>{grade.mid}</td><td>{grade.final}</td><td>{grade.practice}</td><td>{grade.sub_semester}</td><td>{grade.sum}</td>
+                  </tr>)}
+                </tbody>
+                </table>
+              </>
+            )}
           </>
         )}
         <h3>--------------------------담당 교과 목록----------------------------------------------</h3>

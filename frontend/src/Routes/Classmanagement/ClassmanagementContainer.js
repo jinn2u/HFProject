@@ -5,6 +5,7 @@ import {getClass} from '../../Modules/classManagement/showClass'
 import {getStudent} from '../../Modules/classManagement/showStudents'
 import {getSubjects} from '../../Modules/classManagement/showSubjects'
 import {getregisterStandard} from '../../Modules/classManagement/registerStandard'
+import {getregisterGrade} from '../../Modules/classManagement/registerGrade'
 import useInput from '../../Utils/utils/useInput'
 
 const ClassmanagementContainer = () => {
@@ -19,8 +20,12 @@ const ClassmanagementContainer = () => {
 
   const [registerValue,setRegisterValue] = useState(false)
   const [chooseSubject, setChooseSubject] = useState('')
+  const [onInpGradeBtnValue, setOnInpGradeBtnValue] = useState(false)
+  const chooseSemester = ['1','2']
+  const [chooseSemVal, setChooseSemVal] = useState('')
+  const [stdNumVal, setStdNumVal] = useState('')
   const dispatch = useDispatch()  
-  const { loading, tea_class, tea_home,  students, showStudent, selectedClass, showSubject, subjects} = useSelector(
+  const { loading, tea_class, tea_home,  students, showStudent, selectedClass, showSubject, subjects,registerGrade, grades } = useSelector(
     state => ({
       showClass:state.teaClasses.showClass,
       tea_class: state.teaClasses.tea_class,
@@ -30,6 +35,8 @@ const ClassmanagementContainer = () => {
       selectedClass: state.teaStudent.selectedClass,
       showSubject: state.teaSubjects.showSubject,
       subjects: state.teaSubjects.subjects,
+      registerGrade: state.regGrade.registerGrade,
+      grades: state.regGrade.grades,
       loading: state.loading
     }),
     shallowEqual
@@ -52,8 +59,6 @@ const ClassmanagementContainer = () => {
     inp_practice.setValue('')
   }
 
-  console.log(inp_sub_semester.value+"sibal")
-
   const onRegValBtn = useCallback(() => {
     if(registerValue===false)
       setRegisterValue(true)
@@ -66,9 +71,25 @@ const ClassmanagementContainer = () => {
   },[chooseSubject])
 
   const onInpGradeBtn = e => {
-    const asd = prompt('중간고사점수',{std_mid})
-    const asd1 = prompt('기말고사점수','입력')
+    onInpGradeBtnValue === true ? setOnInpGradeBtnValue(false) : setOnInpGradeBtnValue(true)   
+    setStdNumVal(e.target.value)
   }
+  const onGradeSubmit = e => {
+    e.preventDefault()
+    const students = [{
+      stu_num: stdNumVal,
+      mid: std_mid.value,
+      final: std_final.value,
+      practice: std_practice.value 
+    }]
+    dispatch(getregisterGrade(chooseSubject, chooseSemVal, students))
+    std_mid.setValue('')
+    std_final.setValue('')
+    std_practice.setValue('')
+  }
+  const chooseSemBtn = e => {
+    setChooseSemVal(e.target.value)
+  } 
   return (<ClassmanagementPresenter 
     loaindg={loading} 
     tea_class={tea_class} 
@@ -92,6 +113,13 @@ const ClassmanagementContainer = () => {
     std_mid={std_mid}
     std_practice={std_practice}
     onInpGradeBtn={onInpGradeBtn}
+    onInpGradeBtnValue={onInpGradeBtnValue}
+    onGradeSubmit={onGradeSubmit}
+    chooseSemester={chooseSemester}
+    chooseSemBtn={chooseSemBtn}
+    chooseSemVal={chooseSemVal}
+    registerGrade={registerGrade}
+    grades={grades}
   />)
 }
 export default ClassmanagementContainer
