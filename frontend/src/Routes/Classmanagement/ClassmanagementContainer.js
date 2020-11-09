@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect } from 'react'
+import React, {useCallback, useEffect, useState } from 'react'
 import ClassmanagementPresenter from './ClassmanagementPresenter'
 import { useDispatch,useSelector, shallowEqual} from 'react-redux'
 import {getClass} from '../../Modules/classManagement/showClass'
@@ -12,7 +12,13 @@ const ClassmanagementContainer = () => {
   const inp_mid = useInput('')
   const inp_final = useInput('')
   const inp_practice = useInput('')  
-  
+
+  const std_mid = useInput('')
+  const std_final = useInput('')
+  const std_practice = useInput('')
+
+  const [registerValue,setRegisterValue] = useState(false)
+  const [chooseSubject, setChooseSubject] = useState('')
   const dispatch = useDispatch()  
   const { loading, tea_class, tea_home,  students, showStudent, selectedClass, showSubject, subjects} = useSelector(
     state => ({
@@ -37,15 +43,32 @@ const ClassmanagementContainer = () => {
     dispatch(getStudent(e.target.value))
   },[dispatch])
 
-  const onSubjSubmit = useCallback(e =>{
-    console.log(e.target.value,inp_practice.onChange+"냐ㅠ미ㄴ")
-    dispatch(getregisterStandard(e.target.value, inp_sub_semester.value, inp_mid.value, inp_final.value, inp_practice.value))
+  const onSubjSubmit = e =>{
+    e.preventDefault()
+    dispatch(getregisterStandard(chooseSubject, inp_sub_semester.value, inp_mid.value, inp_final.value, inp_practice.value))
     inp_sub_semester.setValue('')
     inp_mid.setValue('')
     inp_final.setValue('')
     inp_practice.setValue('')
-  },[dispatch])
+  }
 
+  console.log(inp_sub_semester.value+"sibal")
+
+  const onRegValBtn = useCallback(() => {
+    if(registerValue===false)
+      setRegisterValue(true)
+    else  
+      setRegisterValue(false)
+  },[registerValue])
+
+  const chooseSubBtn = useCallback((e)=>{
+    setChooseSubject(e.target.value)
+  },[chooseSubject])
+
+  const onInpGradeBtn = e => {
+    const asd = prompt('중간고사점수',{std_mid})
+    const asd1 = prompt('기말고사점수','입력')
+  }
   return (<ClassmanagementPresenter 
     loaindg={loading} 
     tea_class={tea_class} 
@@ -61,6 +84,14 @@ const ClassmanagementContainer = () => {
     inp_final={inp_final}
     inp_practice={inp_practice}
     onSubjSubmit={onSubjSubmit}
+    onRegValBtn={onRegValBtn}
+    registerValue={registerValue}
+    chooseSubBtn={chooseSubBtn}
+    chooseSubject={chooseSubject}
+    std_final={std_final}
+    std_mid={std_mid}
+    std_practice={std_practice}
+    onInpGradeBtn={onInpGradeBtn}
   />)
 }
 export default ClassmanagementContainer

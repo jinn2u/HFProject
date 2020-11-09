@@ -16,7 +16,6 @@ export default () => {
         <>
           <h1>선생입니다.</h1>
           <Link to='/classmanagement' >학급관리</Link>
-          
         </>
       )}
     </>

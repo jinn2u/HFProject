@@ -17,6 +17,7 @@ const LoginContainer = () => {
     user_num.setValue('')
     user_pw.setValue('')
   }
+  console.log(user_num.value)
   return (
     <LoginPresenter
       user_num={user_num}

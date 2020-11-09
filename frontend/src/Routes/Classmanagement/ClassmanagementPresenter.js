@@ -15,6 +15,14 @@ const ClassmanagementPresenter = ({loading,
   inp_final,
   inp_practice,
   onSubjSubmit,
+  onRegValBtn,
+  registerValue,
+  chooseSubBtn,
+  chooseSubject,
+  std_mid,
+  std_final,
+  std_practice,
+  onInpGradeBtn
 }) => ( 
   <>
     {loading === true ? (
@@ -44,15 +52,19 @@ const ClassmanagementPresenter = ({loading,
           <></>
         ):(
           <>
-            <h1>{selectedClass} 에 대한 학생들의 정보</h1>
+            <h1>{selectedClass} 에 대한 학생들의 성적 입력하기</h1>
+            <h1>과목을 선택하세요: {chooseSubject}</h1>
+            {subjects.map((subject, i)=> <button key ={i} onClick={chooseSubBtn}value={subject}>{subject}</button>)}
             <table border="1">
               <thead>
-              <tr><td>학번</td><td>이름</td></tr>
+              <tr><td>이름</td><td>학번</td><td></td></tr>
               </thead>
               <tbody>
                 {students.map((student, i) => 
                   <tr key={i}>
-                    <td><button value={student.class_stu_num}>{student.class_stu_num}</button></td><td><button value={student.class_stu_name}>{student.class_stu_name}</button></td>
+                    <td><input value={student.class_stu_name} placeholder={student.class_stu_name} readOnly /></td>
+                    <td><input placeholder={student.class_stu_num} value={student.class_stu_num} readOnly/></td>
+                    <td><button onClick={onInpGradeBtn}>선택하세요.</button></td>
                   </tr>
                 )}
               </tbody>
@@ -60,18 +72,29 @@ const ClassmanagementPresenter = ({loading,
           </>
         )}
         <h3>--------------------------담당 교과 목록----------------------------------------------</h3>
-        <h1>성적 비율 등록하기</h1>
-        {showSubject === false ? (
+        <button onClick={onRegValBtn}>성적 비율 등록하기</button>
+        {registerValue === false ? (
           <></>
         ):(
           <>
-            {subjects.map((subject, i)=> <button key ={i}  onClick={onSubjSubmit}value={subject}>{subject}</button>)}
-            <input placeholder="semester" value={inp_sub_semester.value} onChange={inp_sub_semester.onChange}/> 
-            <input placeholder="mid" value={inp_mid.value} onChange={inp_mid.onChange}/>
-            <input placeholder="final" value={inp_final.value} onChange={inp_final.onChange} /> 
-            <input placeholder="practice" value={inp_practice.value} onChange={inp_practice.onChange} />
+            {showSubject === false ? (
+              <></>
+            ):(
+              <>
+                <h1>성적기준을 입력할 과목을 선택하세요: {chooseSubject}</h1>
+                {subjects.map((subject, i)=> <button key ={i}  onClick={chooseSubBtn}value={subject}>{subject}</button>)}
+                <form onSubmit={onSubjSubmit}>
+                  <input placeholder="semester" value={inp_sub_semester.value} onChange={inp_sub_semester.onChange}/> 
+                  <input placeholder="mid" value={inp_mid.value} onChange={inp_mid.onChange}/>
+                  <input placeholder="final" value={inp_final.value} onChange={inp_final.onChange} /> 
+                  <input placeholder="practice" value={inp_practice.value} onChange={inp_practice.onChange} />
+                  <button>등록하기</button>
+                </form>
+              </>
+            )}
           </>
         )}
+
       </>
     )}
   </> 
