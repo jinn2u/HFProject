@@ -6,7 +6,6 @@ const { secret } = require('../../../config')
 module.exports = async (req, res) => {
   // const {access_token} = req.headers
   // const {data: sub_tea_num} = await jwt.verify(access_token, secret)
-
   const {tea_subject:sub_name, sub_semester, mid, final, practice} = req.body
   const sub_tea_num = "t2"
   try{
