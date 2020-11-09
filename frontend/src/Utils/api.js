@@ -40,6 +40,7 @@ export const showStudents = (tea_class) => instance.post('/classmanagement/showS
 export const showSubjects = () => instance.post('/classmanagement/showsubject')
 export const registerStandard = (tea_subject, sub_semester, mid, final, practice) => instance.post('/classmanagement/registerstandard',{tea_subject, sub_semester, mid, final, practice})
 export const registerGrade = (tea_subject, sub_semester, students) => instance.post('/classmanagement/registergrade', {tea_subject, sub_semester, students})
+export const showStdGrades = () => instance.post('/stdGrade',)
 // export const getSignup = ( user_num, user_name, user_id, user_pwd ) =>
 //   axios.post('/signup', { user_num, user_name, user_id, user_pwd })
 

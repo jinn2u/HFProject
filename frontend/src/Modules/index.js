@@ -7,6 +7,7 @@ import teaStudent from './classManagement/showStudents'
 import teaSubjects from './classManagement/showSubjects'
 import regStandard from './classManagement/registerStandard'
 import regGrade from './classManagement/registerGrade'
+import allStdGrade from './student/R_showGrade'
 
 const rootReducer = combineReducers({
   loading,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   teaStudent,
   teaSubjects,
   regStandard,
-  regGrade
+  regGrade,
+  allStdGrade
 })
 export default rootReducer

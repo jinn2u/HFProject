@@ -7,6 +7,7 @@ import Header from "./Header";
 import Main from "../Routes/Main";
 import Login from "../Routes/Login";
 import Classmanagement from '../Routes/Classmanagement'
+import ShowGrade from '../Routes/ShowGrade'
 import { maintain_login } from "../Modules/login";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/" component={Main} exact />
         <Route path="/login" component={Login} />
         <Route path="/classmanagement" component={Classmanagement} exact/>
+        <Route path="/showGrade" component={ShowGrade} exact/>       
       </Switch>
     </>
   );

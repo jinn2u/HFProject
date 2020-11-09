@@ -10,6 +10,7 @@ export default () => {
       {user_type==='student' && (
         <>
           <h1>학생입니다.</h1>
+          <Link to='/showGrade'>성적 확인</Link>
         </>
       )}
       {user_type==='teacher' && (
