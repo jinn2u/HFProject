@@ -17,6 +17,7 @@ export default () => {
         <>
           <h1>선생입니다.</h1>
           <Link to='/classmanagement' >학급관리</Link>
+          <Link to='/teaGrade'>과목에 대한 성적 관리</Link>
         </>
       )}
     </>

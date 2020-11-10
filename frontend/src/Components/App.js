@@ -9,7 +9,8 @@ import Login from "../Routes/Login";
 import Classmanagement from '../Routes/Classmanagement'
 import ShowGrade from '../Routes/ShowGrade'
 import { maintain_login } from "../Modules/login";
-
+import Signup from '../Routes/Signup'
+import Tea_Grade from '../Routes/Tea_Grade'
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,8 +23,11 @@ const App = () => {
       <Switch>
         <Route path="/" component={Main} exact />
         <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup}/>
         <Route path="/classmanagement" component={Classmanagement} exact/>
-        <Route path="/showGrade" component={ShowGrade} exact/>       
+        <Route path="/showGrade" component={ShowGrade} exact/> 
+        <Route path="/teaGrade" component={Tea_Grade} exact />
+           
       </Switch>
     </>
   );

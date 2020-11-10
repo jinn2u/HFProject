@@ -1,30 +1,30 @@
 import { handleActions } from 'redux-actions'
 import * as api from '../Utils/api'
-import signupThunk from './thunk/signupThunk'
+import fourParam from './thunk/fourParam'
 
 const GET_SIGNUP = 'signup/SIGNUP'
 const GET_SIGNUP_SUCCESS = 'signup/SIGNUP_SUCCESS'
 const GET_SIGNUP_FAILURE = 'signup/SIGNUP_FAILURE'
 
-export const getSignup = signupThunk(GET_SIGNUP, api.getSignup)
+export const getIsSignup = fourParam(GET_SIGNUP, api.getSignup)
 
 const initialState = {
-  isSignedUp: false,
+  isSignup: false,
   error: false,
 }
-const signup = handleActions(
+const signedUp = handleActions(
   {
     [GET_SIGNUP_SUCCESS]: (state, action) => ({
       ...state,
-      isSignedUp: action.payload.signup,
-      error: false,
+      isSignup: action.payload.isSignup,
+      error: action.payload.error,
     }),
     [GET_SIGNUP_FAILURE]: (state, action) => ({
       ...state,
-      isSignedUp: false,
+      isSignup: action.payload.isSignup,
       error: action.payload.error,
     }),
   },
   initialState
 )
-export default signup
+export default signedUp

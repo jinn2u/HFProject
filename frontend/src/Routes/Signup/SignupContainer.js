@@ -3,33 +3,33 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
 import SignupPresenter from './SignupPresenter'
 import useInput from '../../Utils/utils/useInput'
-import { getSignup } from '../../Modules/signup'
+import { getIsSignup } from '../../Modules/signup'
 
 const SignupContainer = () => {
   const dispatch = useDispatch()
   const user_num = useInput('')
   const user_name = useInput('')
-  const user_id = useInput('')
-  const user_pwd = useInput('')
+  const user_pw = useInput('')
+  const user_secret_key = useInput('')
 
-  const { isSignedUp, error } = useSelector(state => state.signup, shallowEqual)
+  const { isSignup, error } = useSelector(state => state.signedUp, shallowEqual)
   const onSubmit = e => {
     e.preventDefault()
-    dispatch(getSignup( user_num.value, user_name.value, user_id.value, user_pwd.value))
-    user_id.setValue('')
-    user_pwd.setValue('')
-    user_name.setValue('')
+    dispatch(getIsSignup( user_num.value, user_name.value, user_pw.value, user_secret_key.value))
     user_num.setValue('')
+    user_name.setValue('')
+    user_pw.setValue('')
+    user_secret_key.setValue('')
   }
 
   return <SignupPresenter 
     onSubmit={onSubmit}
-    isSignedUp={isSignedUp} 
+    isSignup={isSignup} 
     error={error} 
     user_num = {user_num}
     user_name = {user_name}
-    user_id = {user_id} 
-    user_pwd = {user_pwd}
+    user_pw = {user_pw} 
+    user_secret_key = {user_secret_key}
   />
 }
 export default SignupContainer
