@@ -5,6 +5,7 @@ import Cookies from "js-cookie";
 
 import Header from "./Header";
 import Main from "../Routes/Main";
+import Footer from "./Footer"
 import Login from "../Routes/Login";
 import Classmanagement from '../Routes/Classmanagement'
 import ShowGrade from '../Routes/ShowGrade'
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/showGrade" component={ShowGrade} exact/> 
            
       </Switch>
+      <Footer/>
     </>
   );
 };
