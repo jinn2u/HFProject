@@ -21,7 +21,7 @@ const typeText = {
   marginTop: "2px",
   paddingLeft: "16px",
   paddingRight: "16px",
-  textAlign: "center",
+  textAlign: "right",
 }
 
 const menuLayout = {
@@ -63,13 +63,17 @@ export default () => {
     <>        
       {user_type==='student' && (
         <>
-          <h1>학생입니다.</h1>
-          <Link to='/showGrade'>성적 확인</Link>
+          <>
+            <h1 style = {typeText}>학생입니다.</h1>
+          </>
+          <div style = {menuLayout}>
+            <Link to='/showGrade' style = {menuStyle} >성적 확인</Link>
+          </div>
         </>
       )}
       {user_type==='teacher' && (
         <>
-          <h1>선생입니다.</h1>
+          <h1 style = {typeText}>선생입니다.</h1>
           <Redirect to='/classmanagement'/>
         </>
       )}

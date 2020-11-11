@@ -82,30 +82,6 @@ const logoutBtn = {
   textAlign: "center",
   float:"right",
 }
-const prevBtn = {
-  color: "white",
-  background: "#1976d2",
-  padding: ".375rem .75rem",
-  borderRadius: ".25rem",
-  fontSize: "0.5rem",
-  lineHeight: "2.0",
-  textDecoration: 'none',
-  width:"15%",
-  height:"auto",
-  fontWeight: "600",
-  letterSpacing: "0.02857em",
-  textTransform: "uppercase",
-  display: "block",
-  boxSizing: "border-box",
-  marginLeft: "10%",
-  marginRight: "10%",
-  marginTop: "2px",
-  paddingLeft: "16px",
-  paddingRight: "16px",
-  textAlign: "center",
-  float:"left",
-}
-
 const logoStyle = {
   width:'30%',
   height:'auto',

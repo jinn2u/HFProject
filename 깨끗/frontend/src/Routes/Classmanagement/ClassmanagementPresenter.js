@@ -182,13 +182,13 @@ const ClassmanagementPresenter = ({loading,
               <></>
             ):(
               <>
-                <h3>성적기준을 입력할 과목을 선택하세요: {chooseSubject}</h3>
+                <h3>성적비율을 입력할 과목을 선택하세요: {chooseSubject}</h3>
                 {subjects.map((subject, i)=> <button key ={i}  onClick={chooseSubBtn}value={subject}>{subject}</button>)}
                 <form onSubmit={onSubjSubmit}>
-                  <input placeholder="semester" value={inp_sub_semester.value} onChange={inp_sub_semester.onChange}/> 
-                  <input placeholder="mid" value={inp_mid.value} onChange={inp_mid.onChange}/>
-                  <input placeholder="final" value={inp_final.value} onChange={inp_final.onChange} /> 
-                  <input placeholder="practice" value={inp_practice.value} onChange={inp_practice.onChange} />
+                  <input style ={{width:"100px"}}placeholder="semester" value={inp_sub_semester.value} onChange={inp_sub_semester.onChange}/> 
+                  <input style ={{width:"100px"}} placeholder="mid" value={inp_mid.value} onChange={inp_mid.onChange}/>
+                  <input style ={{width:"100px"}} placeholder="final" value={inp_final.value} onChange={inp_final.onChange} /> 
+                  <input style ={{width:"100px"}} placeholder="practice" value={inp_practice.value} onChange={inp_practice.onChange} />
                   <button>등록하기</button>
                 </form>
               </>
